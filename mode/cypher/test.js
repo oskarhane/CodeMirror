@@ -34,4 +34,24 @@
 
   MT("multiple attribute, doubleQuotedString (without content)",
       "[node {][atom a:][string \"\"][node ,][atom b:][string \"\"][node }]");
+
+  MT("No auto indentation",
+    "[keyword MATCH] [node {][atom a:][string 'a'][node }]",
+    "[keyword WHERE]");
+
+  MT("Indent multiline objects",
+    "[keyword RETURN] [node {]",
+    "  [atom a:][string 'a'][node ,]",
+    "  [atom a:][string 'a']",
+    "[node }]");
+
+  MT("Indent multiline arrays",
+    "[keyword RETURN] [node \[]",
+    "  [atom a:][string 'a'][node ,]",
+    "  [atom a:][string 'a']",
+    "[node \]]");
+
+  MT("Should never indent strings",
+    "[keyword RETURN] [string \"{n:]",
+    "[string 'value'}\"]");
  })();
